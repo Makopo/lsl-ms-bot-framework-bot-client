@@ -115,7 +115,7 @@ state state_listening
     state_entry()
     {
         llListen(0, "", NULL_KEY, ""); // listen for first utterance
-        llSetTimerEvent(10);
+        llSetTimerEvent(10.0);
     }
 
     listen(integer channel, string name, key id, string message)
@@ -123,8 +123,6 @@ state state_listening
         utterance = message;
         state state_send;
     }
-
-    // listener will be automatically closed when move to another state.
 
     timer()
     {
@@ -134,6 +132,14 @@ state state_listening
             llOwnerSay("nearly expires, refreshing the token ...");
             state state_token_refresh;
         }
+    }
+
+    state_exit()
+    {
+        // timer persists accross states if not resetted
+        llResetTime();
+
+        // listener will be automatically closed when move to another state.
     }
 }
 
