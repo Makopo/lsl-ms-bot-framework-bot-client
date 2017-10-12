@@ -8,13 +8,14 @@ into the bot client for [Microsoft Bot Framework](https://dev.botframework.com/)
 ### Prerequisites
 
 You need a Bot Framework bot and enable Direct Line channel on it.
+
 For example, if you create a bot in C# with Visual Studio, 
 and deploy it on Azure, these documents will help.
 
-https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-quickstart
-https://docs.microsoft.com/en-us/bot-framework/deploy-dotnet-bot-visual-studio
-https://docs.microsoft.com/en-us/bot-framework/portal-register-bot
-https://docs.microsoft.com/en-us/bot-framework/channel-connect-directline
+* https://docs.microsoft.com/en-us/bot-framework/dotnet/bot-builder-dotnet-quickstart
+* https://docs.microsoft.com/en-us/bot-framework/deploy-dotnet-bot-visual-studio
+* https://docs.microsoft.com/en-us/bot-framework/portal-register-bot
+* https://docs.microsoft.com/en-us/bot-framework/channel-connect-directline
 
 ### How to use it
 
