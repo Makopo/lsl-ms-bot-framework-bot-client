@@ -183,6 +183,8 @@ state state_receive
  
     http_response(key request_id, integer status, list metadata, string body)
     {
+        integer i;
+
         // exit if unknown
         if (request_id != httpRequestId) return;
 
@@ -193,9 +195,20 @@ state state_receive
 
         // just takes last activity
         list actList = llJson2List(llJsonGetValue(body, ["activities"]));
-        string activity = llList2String(actList, llGetListLength(actList)-1);
 
-        llSay(0, llJsonGetValue(activity, ["text"])); // chat out
+        // search backward for a bot reply
+        // a bot reply should have some replyToId
+        // (bot may not always respond to the users)
+        for (i=llGetListLength(actList)-1; i>=0; i--)
+        {
+            string activity = llList2String(actList, i);
+            if (llJsonValueType(activity, ["replyToId"]) != JSON_INVALID) {
+                llSay(0, llJsonGetValue(activity, ["text"])); // chat out
+                jump break;
+            }
+        }
+        @break;
+
         state state_listening;
    }
 }
